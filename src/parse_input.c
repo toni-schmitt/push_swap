@@ -6,11 +6,22 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/02 14:06:34 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/05 19:36:20 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	is_in_stack(t_stack *a, int element)
+{
+	while (a && a->next)
+	{
+		if (element == a->data)
+			return (TRUE);
+		a = a->next;
+	}
+	return (FALSE);
+}
 
 static int	is_valid_input(int argc, char *argv[])
 {
@@ -39,6 +50,7 @@ static int	is_valid_input(int argc, char *argv[])
 t_stack	*parse_input(int argc, char *argv[])
 {
 	t_stack	*a;
+	int		new_data;
 	int		i;
 
 	if (!is_valid_input(argc, argv))
@@ -46,7 +58,10 @@ t_stack	*parse_input(int argc, char *argv[])
 	i = 1;
 	while (i < argc)
 	{
-		if (stack_add_back(&a, new_stack_element(ft_atoi(argv[i]))) == FALSE)
+		new_data = ft_atoi(argv[i]);
+		if (is_in_stack(a, new_data))
+			putstderr("Error\n");
+		if (stack_add_back(&a, new_stack_element(new_data)) == FALSE)
 			putstderr("Error\n");
 		i++;
 	}
