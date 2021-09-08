@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 21:22:56 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/05 19:45:00 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/08 17:17:26 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ OPERATIONS_SRC_PATH = $(SRC_PATH)operations/
 OPERATIONS_OBJ_PATH = $(OBJ_PATH)operations/
 STACK_SRC_PATH = $(SRC_PATH)stack/
 STACK_OBJ_PATH = $(OBJ_PATH)stack/
+SORTING_SRC_PATH = $(SRC_PATH)sorting/
+SORTING_OBJ_PATH = $(OBJ_PATH)sorting/
 INCLUDE_PATH = ./include/
 HEADER = $(INCLUDE_PATH)push_swap.h
 LIBFT_PATH = ./libs/libft/
@@ -27,12 +29,12 @@ LIBFT_PATH = ./libs/libft/
 NAME = push_swap
 LIBFT_NAME = $(LIBFT_PATH)lib/libft.a
 
-SRC = $(SRC_PATH)main.c $(SRC_PATH)parse_input.c
+SRC = $(SRC_PATH)main.c $(SRC_PATH)parse_input.c \
+		$(OPERATIONS_SRC_PATH)push.c $(OPERATIONS_SRC_PATH)reverse.c $(OPERATIONS_SRC_PATH)rotate.c $(OPERATIONS_SRC_PATH)swap.c \
+		$(STACK_SRC_PATH)elements.c $(STACK_SRC_PATH)stack_utils.c \
+		$(SORTING_SRC_PATH)big_sort.c \
+		$(SORTING_SRC_PATH)indexing/indexing.c $(SORTING_SRC_PATH)indexing/quick_sort.c
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
-OPERATIONS = $(OPERATIONS_SRC_PATH)push.c $(OPERATIONS_SRC_PATH)reverse.c $(OPERATIONS_SRC_PATH)rotate.c $(OPERATIONS_SRC_PATH)swap.c
-OPERATIONS_OBJ = $(patsubst $(OPERATIONS_SRC_PATH)%.c, $(OPERATIONS_OBJ_PATH)%.o, $(OPERATIONS_SRC))
-STACK_SRC = $(STACK_SRC_PATH)elements.c $(STACK_SRC_PATH)stack_utils.c
-STACK_OBJ = $(patsubst $(STACK_SRC_PATH)%.c, $(STACK_OBJ_PATH)%.o, $(STACK_SRC))
 
 INCLUDE_FLAGS = -I $(LIBFT_PATH)include/ -I $(INCLUDE_PATH)
 
@@ -53,9 +55,9 @@ $(LIBFT_NAME):
 	@printf $(UP)$(CUT)
 	@echo $(G)Finished [$(LIBFT_NAME)]$(X)
 
-$(NAME): $(OBJ) $(OPERATIONS_OBJ) $(STACK_OBJ) $(LIBFT_NAME)
+$(NAME): $(OBJ) $(LIBFT_NAME)
 	@echo $(Y)Compiling [$(NAME)]...$(X)
-	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) $(OBJ) $(OPERATIONS_OBJ) $(STACK_OBJ) $(LIBFT_NAME) -o $(NAME)
+	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) $(OBJ) $(LIBFT_NAME) -o $(NAME)
 	@echo $(G)Finished [$(NAME)]$(X)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
@@ -63,6 +65,8 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OPERATIONS_OBJ_PATH)
 	@mkdir -p $(STACK_OBJ_PATH)
+	@mkdir -p $(SORTING_OBJ_PATH)
+	@mkdir -p $(SORTING_OBJ_PATH)indexing/
 	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) -o $@ -c $<
 	@printf $(UP)$(CUT)
 	@echo $(G)Finished [$@]$(X)
@@ -79,5 +83,10 @@ fclean: clean
 	@echo $(R)Cleaning"  "[$(NAME)]...$(X)
 
 re: fclean all
+
+norm:
+	@echo $(G)Checking Norminette...$(X)
+	norminette | grep --color -E "Error"
+	@echo $(G)Done$(X)
 
 .PHONY: all, clean, fcelan, re
