@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:40:45 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/01 15:54:08 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/08 17:15:06 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	pa(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	if (*a == NULL || *b == NULL)
-		return ;
 	tmp = *b;
 	*b = (*b)->next;
 	tmp->next = *a;
@@ -37,8 +35,6 @@ void	pb(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	if (*a == NULL || *b == NULL)
-		return ;
 	tmp = *a;
 	*a = (*a)->next;
 	tmp->next = *b;

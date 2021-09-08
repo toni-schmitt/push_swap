@@ -6,18 +6,34 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:29:04 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 19:29:23 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/08 17:10:20 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+t_stack	*new_stack(void)
+{
+	t_stack	*new;
+
+	new = malloc(sizeof(*new));
+	if (new == NULL)
+		return (NULL);
+	new->data = 0;
+	new->index = 0;
+	new->next = NULL;
+	return (new);
+}
+
 /* Returns a pointer to the last element of stack */
 t_stack	*get_last_element(t_stack *stack)
 {
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	t_stack	*stack_cpy;
+
+	stack_cpy = stack;
+	while (stack_cpy->next)
+		stack_cpy = stack_cpy->next;
+	return (stack_cpy);
 }
 
 int	stack_add_front(t_stack **stack, t_stack *new)

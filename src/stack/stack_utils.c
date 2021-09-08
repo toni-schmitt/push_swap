@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:28:34 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 19:28:52 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/07 17:31:16 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ int	get_stack_size(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (stack->next)
+	while (stack)
 	{
 		i++;
 		stack = stack->next;
 	}
 	return (i);
+}
+
+t_stack	*copy_stack(t_stack *stack)
+{
+	t_stack	*copy;
+
+	while (stack->next)
+	{
+		stack_add_back(&copy, new_stack_element(stack->data));
+		stack = stack->next;
+	}
+	return (copy);
 }
