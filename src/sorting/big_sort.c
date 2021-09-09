@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 17:00:04 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/08 17:19:06 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 10:08:08 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 void	big_sort(t_stack **a, t_stack **b)
 {
-	int	size;
 	int	i;
 	int	j;
 	int	num;
 
-	size = get_stack_size(*a);
 	i = 0;
 	while (!is_sorted(*a))
 	{
 		j = 0;
-		while (j < size)
+		while (j < (*a)->size)
 		{
-			num = (*a)->index;
+			num = (*a)->elements->index;
 			if (((num >> i) & 1) > 0)
 				*a = ra(*a, TRUE);
 			else
@@ -34,7 +32,7 @@ void	big_sort(t_stack **a, t_stack **b)
 			j++;
 		}
 		i++;
-		while (*b)
+		while ((*b)->elements)
 			pa(a, b);
 	}
 }
