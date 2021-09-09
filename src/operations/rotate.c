@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:41:18 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 13:46:37 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 16:07:37 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
  *	Shift a
  *	Shifts up all elements of stack a by 1
- *	Last element becomes first element
+ *	First element becomes last element
 */
 t_stack	*ra(t_stack *a, int print_operation)
 {
@@ -38,7 +38,7 @@ t_stack	*ra(t_stack *a, int print_operation)
 /*
  *	Shift b
  *	Shifts up all elements of stack b by 1
- *	Last element becomes first element
+ *	First element becomes last element
 */
 t_stack	*rb(t_stack *b, int print_operation)
 {
