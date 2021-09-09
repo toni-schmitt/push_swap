@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:28:34 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/07 17:31:16 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 09:24:20 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,35 @@
 /* Frees stack */
 void	free_stack(t_stack **stack)
 {
-	t_stack	*tmp;
+	t_element	*element;
+	t_element	*tmp;
 
-	while (*stack)
+	if (*stack == NULL)
+		return ;
+	element = (*stack)->elements;
+	while (element)
 	{
-		tmp = *stack;
-		*stack = (*stack)->next;
+		tmp = element;
+		element = element->next;
 		free(tmp);
 		tmp = NULL;
 	}
+	element = NULL;
+	free(*stack);
 	*stack = NULL;
 }
 
 /* Returns true if stack is sorted */
 int	is_sorted(t_stack *stack)
 {
-	while (stack && stack->next)
+	t_element	*elements;
+
+	elements = stack->elements;
+	while (elements && elements->next)
 	{
-		if (stack->data > stack->next->data)
+		if (elements->data > elements->next->data)
 			return (FALSE);
-		stack = stack->next;
+		elements = elements->next;
 	}
 	return (TRUE);
 }
@@ -42,14 +51,17 @@ int	is_sorted(t_stack *stack)
 /* Returns the size of the stack */
 int	get_stack_size(t_stack *stack)
 {
-	int	i;
+	t_element	*elements;
+	int			i;
 
 	i = 0;
-	while (stack)
+	elements = stack->elements;
+	while (elements)
 	{
 		i++;
-		stack = stack->next;
+		elements = elements->next;
 	}
+	stack->size = i;
 	return (i);
 }
 
@@ -57,10 +69,10 @@ t_stack	*copy_stack(t_stack *stack)
 {
 	t_stack	*copy;
 
-	while (stack->next)
+	while (stack->elements->next)
 	{
-		stack_add_back(&copy, new_stack_element(stack->data));
-		stack = stack->next;
+		stack_add_back(&copy, new_stack_element(stack->elements->data));
+		stack->elements = stack->elements->next;
 	}
 	return (copy);
 }

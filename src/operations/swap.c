@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:39:32 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/01 15:53:48 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 08:56:44 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void	swap(int *a, int *b)
  */
 t_stack	*sa(t_stack *a, int print_operation)
 {
-	if (a == NULL)
+	if (a->elements == NULL)
 		return (NULL);
 	if (print_operation)
 		ft_printf("sa\n");
-	if (a->next)
-		swap(&a->data, &a->next->data);
+	if (a->elements->next)
+		swap(&a->elements->data, &a->elements->next->data);
 	return (a);
 }
 
@@ -46,12 +46,12 @@ t_stack	*sa(t_stack *a, int print_operation)
  */
 t_stack	*sb(t_stack *b, int print_operation)
 {
-	if (b == NULL)
+	if (b->elements == NULL)
 		return (NULL);
 	if (print_operation)
 		ft_printf("sb\n");
-	if (b->next)
-		swap(&b->data, &b->next->data);
+	if (b->elements->next)
+		swap(&b->elements->data, &b->elements->next->data);
 	return (b);
 }
 

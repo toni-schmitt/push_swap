@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:41:49 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/02 14:03:54 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 08:55:29 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 */
 t_stack	*rra(t_stack *a, int print_operation)
 {
-	t_stack	*tmp;
-	t_stack	*cpy;
+	t_element	*tmp;
+	t_element	*cpy;
 
-	if (a == NULL || a->next == NULL)
+	if (a->elements == NULL || a->elements->next == NULL)
 		return (a);
-	tmp = a;
-	cpy = a->next;
+	tmp = a->elements;
+	cpy = a->elements->next;
 	get_last_element(a)->next = tmp;
 	tmp->next = NULL;
-	a = cpy;
+	a->elements = cpy;
 	if (print_operation)
 		ft_printf("rra\n");
 	return (a);
@@ -41,16 +41,16 @@ t_stack	*rra(t_stack *a, int print_operation)
 */
 t_stack	*rrb(t_stack *b, int print_operation)
 {
-	t_stack	*tmp;
-	t_stack	*cpy;
+	t_element	*tmp;
+	t_element	*cpy;
 
-	if (b == NULL || b->next == NULL)
+	if (b->elements == NULL || b->elements->next == NULL)
 		return (b);
-	tmp = b;
-	cpy = b->next;
+	tmp = b->elements;
+	cpy = b->elements->next;
 	get_last_element(b)->next = tmp;
 	tmp->next = NULL;
-	b = cpy;
+	b->elements = cpy;
 	if (print_operation)
 		ft_printf("rrb\n");
 	return (b);

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:29:04 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/08 17:10:20 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 09:15:37 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,57 +19,56 @@ t_stack	*new_stack(void)
 	new = malloc(sizeof(*new));
 	if (new == NULL)
 		return (NULL);
-	new->data = 0;
-	new->index = 0;
-	new->next = NULL;
+	new->size = 0;
+	new->elements = NULL;
+	new->head = new->elements;
 	return (new);
 }
 
 /* Returns a pointer to the last element of stack */
-t_stack	*get_last_element(t_stack *stack)
+t_element	*get_last_element(t_stack *stack)
 {
-	t_stack	*stack_cpy;
+	t_element	*first;
 
-	stack_cpy = stack;
-	while (stack_cpy->next)
-		stack_cpy = stack_cpy->next;
-	return (stack_cpy);
+	first = stack->elements;
+	while (first->next)
+		first = first->next;
+	return (first);
 }
 
-int	stack_add_front(t_stack **stack, t_stack *new)
+void	stack_add_front(t_stack **stack, t_element *new)
 {
-	t_stack	*tmp;
+	t_element	*tmp;
 
-	if (new == NULL || stack == NULL)
-		return (FALSE);
-	tmp = *stack;
-	*stack = (*stack)->next;
+	if (new == NULL || *stack == NULL)
+		return ;
+	tmp = (*stack)->elements;
+	(*stack)->elements = (*stack)->elements->next;
 	tmp->next = new;
 	new = tmp;
-	return (TRUE);
 }
 
-int	stack_add_back(t_stack **stack, t_stack *new)
+void	stack_add_back(t_stack **stack, t_element *new)
 {
 	if (new == NULL)
-		return (FALSE);
-	if (*stack == NULL)
+		return ;
+	if ((*stack)->elements == NULL)
 	{
-		*stack = new;
-		return (TRUE);
+		(*stack)->elements = new;
+		return ;
 	}
 	get_last_element(*stack)->next = new;
-	return (TRUE);
 }
 
-t_stack	*new_stack_element(int data)
+t_element	*new_stack_element(int data)
 {
-	t_stack	*new;
+	t_element	*new;
 
 	new = malloc(sizeof(*new));
 	if (new == NULL)
 		return (NULL);
 	new->data = data;
+	new->index = 0;
 	new->next = NULL;
 	return (new);
 }
