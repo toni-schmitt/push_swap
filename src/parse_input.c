@@ -6,11 +6,12 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 09:21:22 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 13:02:14 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "limits.h"
 
 static int	is_in_stack(t_stack *a, int element)
 {
@@ -28,14 +29,18 @@ static int	is_in_stack(t_stack *a, int element)
 
 static int	is_valid_input(int argc, char *argv[])
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	long	snbr;
 
 	i = 1;
 	if (argc < 2)
 		return (FALSE);
 	while (i < argc)
 	{
+		snbr = ft_atol(argv[i]);
+		if ((snbr > INT_MAX || snbr < INT_MIN) || (ft_strlen(argv[i]) > 11))
+			return (FALSE);
 		j = 0;
 		while (argv[i][j])
 		{
