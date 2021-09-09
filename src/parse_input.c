@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/05 19:36:20 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 09:21:22 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 static int	is_in_stack(t_stack *a, int element)
 {
-	while (a && a->next)
+	t_element	*tmp;
+
+	tmp = a->elements;
+	while (tmp && tmp->next)
 	{
-		if (element == a->data)
+		if (element == tmp->data)
 			return (TRUE);
-		a = a->next;
+		tmp = tmp->next;
 	}
 	return (FALSE);
 }
@@ -56,13 +59,13 @@ t_stack	*parse_input(int argc, char *argv[])
 	if (!is_valid_input(argc, argv))
 		putstderr("Error\n");
 	i = 1;
+	a = new_stack();
 	while (i < argc)
 	{
 		new_data = ft_atoi(argv[i]);
 		if (is_in_stack(a, new_data))
 			putstderr("Error\n");
-		if (stack_add_back(&a, new_stack_element(new_data)) == FALSE)
-			putstderr("Error\n");
+		stack_add_back(&a, new_stack_element(new_data));
 		i++;
 	}
 	return (a);
