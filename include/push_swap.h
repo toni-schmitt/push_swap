@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:23:45 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 09:49:54 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 13:45:22 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_element
 typedef struct s_stack
 {
 	int			size;
+	int			instructions;
 	t_element	*head;
 	t_element	*elements;
 }	t_stack;
@@ -59,6 +60,7 @@ void		rrr(t_stack **a, t_stack **b);
 /* SORTING */
 void		big_sort(t_stack **a, t_stack **b);
 void		small_sort(t_stack **a, t_stack **b);
+void		very_small_sort(t_stack **a, t_stack **b);
 /* INDEXING */
 int			*quickSort(t_stack *stack);
 t_stack		*index_stack(t_stack *stack);

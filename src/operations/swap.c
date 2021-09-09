@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:39:32 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 08:56:44 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 13:46:51 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_stack	*sa(t_stack *a, int print_operation)
 		ft_printf("sa\n");
 	if (a->elements->next)
 		swap(&a->elements->data, &a->elements->next->data);
+	a->instructions++;
 	return (a);
 }
 
@@ -52,6 +53,7 @@ t_stack	*sb(t_stack *b, int print_operation)
 		ft_printf("sb\n");
 	if (b->elements->next)
 		swap(&b->elements->data, &b->elements->next->data);
+	b->instructions++;
 	return (b);
 }
 

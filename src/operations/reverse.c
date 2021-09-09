@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:41:49 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 08:55:29 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 13:46:23 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_stack	*rra(t_stack *a, int print_operation)
 	a->elements = cpy;
 	if (print_operation)
 		ft_printf("rra\n");
+	a->instructions++;
 	return (a);
 }
 
@@ -53,6 +54,7 @@ t_stack	*rrb(t_stack *b, int print_operation)
 	b->elements = cpy;
 	if (print_operation)
 		ft_printf("rrb\n");
+	b->instructions++;
 	return (b);
 }
 

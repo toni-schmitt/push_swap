@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:29:04 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 09:15:37 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 13:45:36 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_stack	*new_stack(void)
 	new->size = 0;
 	new->elements = NULL;
 	new->head = new->elements;
+	new->instructions = 0;
 	return (new);
 }
 
