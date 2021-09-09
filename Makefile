@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 21:22:56 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/09 09:50:06 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/09 12:48:08 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LIBFT_NAME = $(LIBFT_PATH)lib/libft.a
 SRC = $(SRC_PATH)main.c $(SRC_PATH)parse_input.c \
 		$(OPERATIONS_SRC_PATH)push.c $(OPERATIONS_SRC_PATH)reverse.c $(OPERATIONS_SRC_PATH)rotate.c $(OPERATIONS_SRC_PATH)swap.c \
 		$(STACK_SRC_PATH)elements.c $(STACK_SRC_PATH)stack_utils.c \
-		$(SORTING_SRC_PATH)big_sort.c $(SORTING_SRC_PATH)small_sort.c \
+		$(SORTING_SRC_PATH)big_sort.c $(SORTING_SRC_PATH)small_sort.c $(SORTING_SRC_PATH)very_small_sort.c \
 		$(SORTING_SRC_PATH)indexing/indexing.c $(SORTING_SRC_PATH)indexing/quick_sort.c
 OBJ = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
 
