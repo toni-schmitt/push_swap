@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:52:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/08 16:58:59 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/09 09:28:50 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,21 @@ static void	sort(int *arr, int low, int high)
 
 int	*quickSort(t_stack *stack)
 {
-	int		*arr;
-	int		i;
-	int		size;
-	t_stack	*copy;
+	int			*arr;
+	int			i;
+	t_element	*copy;
 
-	copy = stack;
-	size = get_stack_size(copy);
-	arr = malloc((size) * sizeof(*arr));
+	copy = stack->elements;
+	arr = malloc((stack->size) * sizeof(*arr));
 	if (arr == NULL)
 		return (NULL);
 	i = 0;
-	while (i < size)
+	while (i < stack->size)
 	{
 		arr[i] = copy->data;
 		copy = copy->next;
 		i++;
 	}
-	sort(arr, 0, size - 1);
+	sort(arr, 0, stack->size - 1);
 	return (arr);
 }
