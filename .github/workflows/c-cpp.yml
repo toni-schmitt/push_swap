@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: check
-      run:  pwd && ls -la
+      run:  pwd && ls -la && ls -la libs && ls -la libs/libft
     - name: make
       run: make
