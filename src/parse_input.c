@@ -6,12 +6,12 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 13:02:14 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:15:37 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "limits.h"
+#include <limits.h>
 
 static int	is_in_stack(t_stack *a, int element)
 {
@@ -27,51 +27,66 @@ static int	is_in_stack(t_stack *a, int element)
 	return (FALSE);
 }
 
-static int	is_valid_input(int argc, char *argv[])
+static int	is_valid_input(char *argv)
 {
-	int		i;
-	int		j;
-	long	snbr;
+	int	lnbr;
 
-	i = 1;
-	if (argc < 2)
+	lnbr = ft_atol(argv);
+	if (lnbr < INT_MIN || lnbr > INT_MAX || ft_strlen(argv) > 11)
 		return (FALSE);
-	while (i < argc)
+	while (*argv)
 	{
-		snbr = ft_atol(argv[i]);
-		if ((snbr > INT_MAX || snbr < INT_MIN) || (ft_strlen(argv[i]) > 11))
+		if (ft_issign(*argv))
+			argv++;
+		if (!ft_isdigit(*argv))
 			return (FALSE);
-		j = 0;
-		while (argv[i][j])
-		{
-			if (ft_issign(argv[i][j]))
-				j++;
-			if (!ft_isdigit(argv[i][j]))
-				return (FALSE);
-			j++;
-		}
-		i++;
+		argv++;
 	}
 	return (TRUE);
 }
 
-t_stack	*parse_input(int argc, char *argv[])
+static int	prnt_error(char **split, t_stack **a)
 {
-	t_stack	*a;
-	int		new_data;
-	int		i;
+	free_stack(a);
+	ft_free_split(split);
+	return (putstderr("Error\n"));
+}
 
-	if (!is_valid_input(argc, argv))
+static int	check(char **split, t_stack **a, char *nbr)
+{
+	int	new_digit;
+
+	if (!is_valid_input(nbr))
+		prnt_error(split, a);
+	new_digit = ft_atoi(nbr);
+	if (is_in_stack(*a, new_digit))
+		prnt_error(split, a);
+	return (new_digit);
+}
+
+void	parse_input(t_stack **a, int argc, char *argv[])
+{
+	char	**split;
+	int		i;
+	int		j;
+	int		new_digit;
+
+	if (argc < 2)
 		putstderr("Error\n");
 	i = 1;
-	a = new_stack();
 	while (i < argc)
 	{
-		new_data = ft_atoi(argv[i]);
-		if (is_in_stack(a, new_data))
-			putstderr("Error\n");
-		stack_add_back(&a, new_stack_element(new_data));
+		split = ft_split(argv[i], ' ');
+		if (split == NULL)
+			prnt_error(split, a);
+		j = 0;
+		while (split[j])
+		{
+			new_digit = check(split, a, split[j]);
+			stack_add_back(a, new_stack_element(new_digit));
+			j++;
+		}
+		ft_free_split(split);
 		i++;
 	}
-	return (a);
 }

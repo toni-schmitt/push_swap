@@ -6,34 +6,39 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:24:11 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 10:08:36 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:15:18 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	free_stacks(t_stack **a, t_stack **b)
+{
+	free_stack(a);
+	free_stack(b);
+	return (EXIT_SUCCESS);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*a;
-	t_stack	*a_head;
 	t_stack	*b;
 
-	a = parse_input(argc, argv);
+	a = new_stack();
+	parse_input(&a, argc, argv);
 	a->size = get_stack_size(a);
+	a->head = a->elements;
 	b = new_stack();
-	a_head = a;
+	b->size = get_stack_size(b);
+	b->head = b->elements;
 	if (is_sorted(a))
-	{
-		free_stack(&a);
-		return (EXIT_SUCCESS);
-	}
-	a_head = a;
+		return (free_stacks(&a, &b));
 	a = index_stack(a);
-	if (a->size > 10)
+	if (a->size >= 10)
 		big_sort(&a, &b);
-	else
+	else if (a->size > 3)
 		small_sort(&a, &b);
-	free_stack(&a);
-	free_stack(&b);
-	return (EXIT_SUCCESS);
+	else if (a->size <= 3)
+		very_small_sort(&a);
+	return (free_stacks(&a, &b));
 }
