@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/13 17:15:37 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:22:44 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_in_stack(t_stack *a, int element)
 
 static int	is_valid_input(char *argv)
 {
-	int	lnbr;
+	long	lnbr;
 
 	lnbr = ft_atol(argv);
 	if (lnbr < INT_MIN || lnbr > INT_MAX || ft_strlen(argv) > 11)
