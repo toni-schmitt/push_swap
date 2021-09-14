@@ -1,5 +1,5 @@
 # push_swap - 42 Heilbronn (August 2021)
-Because swap_push isn’t as natural
+Because swap_push isn’t as natural<br>
 
 ## Usage:
 1. Clone it like this:<br>
@@ -17,3 +17,6 @@ If it displays OK everything worked fine!
 ## How does it work?
 For sorting more then 10 numbers I used the [big_sort](https://github.com/toni-schmitt/push_swap/blob/main/src/sorting/big_sort.c "big_sort function file") function.
 This function first [indexes](https://github.com/toni-schmitt/push_swap/tree/main/src/sorting/indexing "indexing files") the numbers, so that also negative Integers can be sorted, then proceeds to sort the numbers with a modified version of [Radix Sort](https://www.geeksforgeeks.org/radix-sort/).
+
+
+###### For more information look into the [subject pdf](https://github.com/toni-schmitt/push_swap/blob/main/push_swap%20subject.pdf)
