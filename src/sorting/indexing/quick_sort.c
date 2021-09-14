@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toni <toni@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:52:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 09:28:50 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/14 12:56:03 by toni             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	sort(int *arr, int low, int high)
 	}
 }
 
-int	*quickSort(t_stack *stack)
+int	*quick_sort(t_stack *stack)
 {
 	int			*arr;
 	int			i;
