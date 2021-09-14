@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 14:41:01 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 09:28:41 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/14 15:08:13 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_stack	*index_stack(t_stack *stack)
 	t_element	*copy;
 
 	copy = stack->elements;
-	sorted_arr = quickSort(stack);
+	sorted_arr = quick_sort(stack);
 	while (copy)
 	{
 		j = 0;
