@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/13 18:22:44 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:37:49 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void	parse_input(t_stack **a, int argc, char *argv[])
 	int		j;
 	int		new_digit;
 
+	split = NULL;
 	if (argc < 2)
-		putstderr("Error\n");
+		prnt_error(split, a);
 	i = 1;
 	while (i < argc)
 	{
