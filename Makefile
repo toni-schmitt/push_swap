@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 21:22:56 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/09 12:48:08 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/14 20:36:42 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,34 @@ re: fclean all
 
 norm:
 	@echo $(G)Checking Norminette...$(X)
-	norminette | grep --color -E "Error"
+	norminette
 	@echo $(G)Done$(X)
+
+test: all norm
+	@echo $(G)Testing push_swap...$(X)
+	@echo $(G)Push Swap should now display error...$(X)
+	@echo "./$(NAME) hello world"
+	@./$(NAME) hello world || true
+	@echo $(G)Push Swap should now display error...$(X)
+	@echo "./$(NAME) 1 2 3 4 5 1"
+	@./$(NAME) 1 2 3 4 5 1 || true
+	@echo $(G)Push Swap should now display error...$(X)
+	@echo "./$(NAME) 2147483647 -2147483648"
+	@./$(NAME) 2147483648 -2147483649 || true
+	@echo $(G)Push Swap should display nothing...$(X)
+	./$(NAME) 42
+	@echo $(G)Push Swap should display nothing...$(X)
+	./$(NAME) 0 1 2 3
+	@echo $(G)Push Swap should display nothing...$(X)
+	./$(NAME) 0 1 2 3 4 5 6 7 8 9
+	@echo $(G)Push Swap should now display nothing...$(X)
+	./$(NAME) 1 2 3 4 5
+	@echo $(G)WordCount should now display 3...$(X)
+	./$(NAME) 1 3 2 4 5 | wc -l
+	@echo $(G)Checker should now display OK...$(X)
+	./$(NAME) 1 3 2 4 5 | ./checker 1 3 2 4 5
+	@echo $(G)Push Swap should now display 3 instructions "(pb sa pa)"...$(X)
+	./$(NAME) 1 3 2 4 5
+	
 
 .PHONY: all, clean, fcelan, re
