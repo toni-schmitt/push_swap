@@ -52,7 +52,6 @@ Mkfile.old
 dkms.conf
 
 .vscode
-push_swap
 pyviz.py
 push_swap_tester
-test.txt
+tster
