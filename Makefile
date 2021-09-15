@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 21:22:56 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/15 18:35:07 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/15 18:57:48 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,9 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@printf $(UP)$(CUT)
 
 # CHECKER
+bonus: $(CHECKER_NAME)
+	@echo $(G)Finished bonus...$(X)
+
 $(CHECKER_NAME): $(OBJ_CHECKER) $(LIBFT_NAME) $(STACK_NAME)
 	@echo $(Y)Compiling [$(CHECKER_NAME)]...$(X)
 	@$(CC) $(CCFLAGS) $(INCLUDE_FLAGS) $(OBJ_CHECKER) $(LIBFT_NAME) $(STACK_NAME) -o $(CHECKER_NAME)
