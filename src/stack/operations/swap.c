@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:39:32 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 13:46:51 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/15 18:27:35 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ t_stack	*sb(t_stack *b, int print_operation)
  *	Swap a and b
  *	Swaps 2 first elements of stack a and b
  */
-void	ss(t_stack **a, t_stack **b)
+void	ss(t_stack **a, t_stack **b, int print_operation)
 {
 	*a = sa(*a, FALSE);
 	*b = sb(*b, FALSE);
-	ft_printf("ss\n");
+	if (print_operation)
+		ft_printf("ss\n");
 }

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:41:18 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 16:07:37 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/15 18:28:00 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ t_stack	*rb(t_stack *b, int print_operation)
  *	Shifts up all elements of stack a and b by 1
  *	Last element becomes first element
 */
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b, int print_operation)
 {
 	*a = ra(*a, FALSE);
 	*b = rb(*b, FALSE);
-	ft_printf("rr\n");
+	if (print_operation)
+		ft_printf("rr\n");
 }

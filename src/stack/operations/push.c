@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 21:40:45 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 13:45:59 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/15 18:29:36 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  *	Push a
  *	Takes the first element of stack b and pushes it to stack a
 */
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, int print_operation)
 {
 	t_element	*tmp;
 
@@ -26,7 +26,8 @@ void	pa(t_stack **a, t_stack **b)
 	(*b)->elements = (*b)->elements->next;
 	tmp->next = (*a)->elements;
 	(*a)->elements = tmp;
-	ft_printf("pa\n");
+	if (print_operation)
+		ft_printf("pa\n");
 	(*a)->instructions++;
 }
 
@@ -34,7 +35,7 @@ void	pa(t_stack **a, t_stack **b)
  *	Push b
  *	Takes the first element of stack a and pushes it to stack b
 */
-void	pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b, int print_operation)
 {
 	t_element	*tmp;
 
@@ -44,6 +45,7 @@ void	pb(t_stack **a, t_stack **b)
 	(*a)->elements = (*a)->elements->next;
 	tmp->next = (*b)->elements;
 	(*b)->elements = tmp;
-	ft_printf("pb\n");
+	if (print_operation)
+		ft_printf("pb\n");
 	(*a)->instructions++;
 }
