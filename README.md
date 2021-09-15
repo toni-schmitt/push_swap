@@ -14,7 +14,7 @@ You can put in any amount of numbers. The programm will then print the actions n
 `./push_swap [Numbers to sort] | ./checker [Numbers to sort]`
 If it displays OK everything worked fine!
 
-###### You can also just run `make test` it will automatically run norminette (if installed on the system) and run a few basic tests.
+###### You can also just run `make test` it will automatically compile (if not compiled), run norminette (if installed on the system) and run a few basic tests.
 
 ## How does it work?
 For sorting more then 10 numbers I used the [big_sort](https://github.com/toni-schmitt/push_swap/blob/main/src/sorting/big_sort.c "big_sort function file") function.
