@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 09:09:24 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/13 18:09:37 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/15 18:31:00 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static void	small_sort_ascending_case(t_stack **a, t_stack **b)
 		if (fourth->data < (*a)->elements->data)
 			*a = rra(*a, TRUE);
 		*a = rra(*a, TRUE);
-		pb(a, b);
-		pb(a, b);
+		pb(a, b, TRUE);
+		pb(a, b, TRUE);
 		very_small_sort(a);
-		pa(a, b);
-		pa(a, b);
+		pa(a, b, TRUE);
+		pa(a, b, TRUE);
 	}
 }
 
@@ -47,9 +47,9 @@ void	small_sort(t_stack **a, t_stack **b)
 			else if ((*a)->elements->data > (*a)->elements->next->data)
 				*a = sa(*a, TRUE);
 			else if ((*a)->elements->data < (*a)->elements->next->data)
-				pb(a, b);
+				pb(a, b, TRUE);
 		}
 		while ((*b)->elements)
-			pa(a, b);
+			pa(a, b, TRUE);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 23:09:14 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/14 16:37:49 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:40:07 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	is_in_stack(t_stack *a, int element)
 	t_element	*tmp;
 
 	tmp = a->elements;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
 		if (element == tmp->data)
 			return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 17:00:04 by tschmitt          #+#    #+#             */
-/*   Updated: 2021/09/09 10:08:08 by tschmitt         ###   ########.fr       */
+/*   Updated: 2021/09/15 18:30:41 by tschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	big_sort(t_stack **a, t_stack **b)
 			if (((num >> i) & 1) > 0)
 				*a = ra(*a, TRUE);
 			else
-				pb(a, b);
+				pb(a, b, TRUE);
 			j++;
 		}
 		i++;
 		while ((*b)->elements)
-			pa(a, b);
+			pa(a, b, TRUE);
 	}
 }
