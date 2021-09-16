@@ -6,7 +6,7 @@
 #    By: tschmitt <tschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/29 21:22:56 by tschmitt          #+#    #+#              #
-#    Updated: 2021/09/15 18:57:48 by tschmitt         ###   ########.fr        #
+#    Updated: 2021/09/16 16:29:10 by tschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ X = "\033[0m"
 UP = "\033[A"
 CUT = "\033[K"
 
-all: $(NAME) $(CHECKER_NAME) $(LIBFT_NAME)
+all: $(NAME) bonus $(LIBFT_NAME)
 	@echo $(G)Finished...$(X)
 
 $(LIBFT_NAME):
@@ -133,6 +133,7 @@ fclean: clean
 
 re: fclean all
 
+# TESTING RULES
 norm:
 	@echo $(G)Checking Norminette...$(X)
 	norminette
@@ -141,28 +142,42 @@ norm:
 test: all norm
 	@echo $(G)Testing push_swap...$(X)
 	@echo $(G)Push Swap should now display error...$(X)
-	@echo "./$(NAME) hello world"
-	@./$(NAME) hello world || true
+	@echo "$(NAME) hello world"
+	@$(NAME) hello world || true
 	@echo $(G)Push Swap should now display error...$(X)
-	@echo "./$(NAME) 1 2 3 4 5 1"
-	@./$(NAME) 1 2 3 4 5 1 || true
+	@echo "$(NAME) 1 2 3 4 5 1"
+	@$(NAME) 1 2 3 4 5 1 || true
 	@echo $(G)Push Swap should now display error...$(X)
-	@echo "./$(NAME) 2147483647 -2147483648"
-	@./$(NAME) 2147483648 -2147483649 || true
+	@echo "$(NAME) 2147483647 -2147483648"
+	@$(NAME) 2147483648 -2147483649 || true
 	@echo $(G)Push Swap should display nothing...$(X)
-	./$(NAME) 42
+	$(NAME) 42
 	@echo $(G)Push Swap should display nothing...$(X)
-	./$(NAME) 0 1 2 3
+	$(NAME) 0 1 2 3
 	@echo $(G)Push Swap should display nothing...$(X)
-	./$(NAME) 0 1 2 3 4 5 6 7 8 9
+	$(NAME) 0 1 2 3 4 5 6 7 8 9
 	@echo $(G)Push Swap should now display nothing...$(X)
-	./$(NAME) 1 2 3 4 5
+	$(NAME) 1 2 3 4 5
 	@echo $(G)WordCount should now display 3...$(X)
-	./$(NAME) 1 3 2 4 5 | wc -l
+	$(NAME) 1 3 2 4 5 | wc -l
 	@echo $(G)Checker should now display OK...$(X)
-	./$(NAME) 1 3 2 4 5 | ./checker 1 3 2 4 5
+	$(NAME) 1 3 2 4 5 | ./checker 1 3 2 4 5
 	@echo $(G)Push Swap should now display 3 instructions "(pb sa pa)"...$(X)
-	./$(NAME) 1 3 2 4 5
+	$(NAME) 1 3 2 4 5
+	@echo $(G)Testing checker...$(X)
+	@echo $(G)Checker should now display Error...$(X)
+	@echo "$(CHECKER_NAME) 3 2 one 0"
+	@$(CHECKER_NAME) 3 2 one 0 || true
+	@echo $(G)Checker should now display Error...$(X)
+	@echo "$(CHECKER_NAME) \"\" 1"
+	@$(CHECKER_NAME) "" 1 || true
+	@echo $(G)Checker should now display KO...$(X)
+	@printf "$(CHECKER_NAME) 3 2 1 0\nsa\nrra\npb\n"
+	@printf "sa\nrra\npb\n" | $(CHECKER_NAME) 3 2 1 0
+	@echo $(G)Checker should now display OK...$(X)
+	@printf "$(CHECKER_NAME) 3 2 1 0\nrra\npb\nsa\nrra\npa\n"
+	@printf "rra\npb\nsa\nrra\npa\n" | $(CHECKER_NAME) 3 2 1 0
+	@echo $(G)Done with testing$(X)
 	
 
 .PHONY: all, clean, fcelan, re
